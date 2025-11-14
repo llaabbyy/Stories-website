@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تواصل معنا</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- الهيدر -->
+    <header class="header">
+      <h1 class="logo">📚 موقع القصص</h1>
+      <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="about.html">حول</a>
+        <a class="active" href="contact.html">تواصل</a>
+      </nav>
+    </header>
+
+    <section class="contact-container fade-up">
+      <h2 class="page-title">تواصل معنا</h2>
+
+      <form
+        class="contact-form fade-up"
+        action="https://formspree.io/f/xkgkoykk"
+        method="POST"
+      >
+        <input type="text" name="name" placeholder="الاسم كامل" required />
+        <input
+          type="email"
+          name="email"
+          placeholder="البريد الإلكتروني"
+          required
+        />
+        <textarea
+          name="message"
+          placeholder="رسالتك…"
+          rows="5"
+          required
+        ></textarea>
+        <button type="submit">إرسال الرسالة 📩</button>
+      </form>
+    </section>
+    <footer class="footer">© موقع القصص — جميع الحقوق محفوظة</footer>
+  </body>
+</html>
