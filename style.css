@@ -1,0 +1,282 @@
+/* ============ خلفية النجوم المتحركة ============ */
+
+body {
+  margin: 0;
+  font-family: "Cairo", sans-serif;
+  background: #01010a;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* طبقات نجوم */
+.stars,
+.stars2,
+.stars3 {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: transparent url("https://i.imgur.com/YKY28eT.png") repeat;
+  animation: moveStars 60s linear infinite;
+  z-index: -1;
+}
+.stars2 {
+  background-size: 600px;
+  opacity: 0.5;
+  animation-duration: 90s;
+}
+.stars3 {
+  background-size: 1000px;
+  opacity: 0.2;
+  animation-duration: 140s;
+}
+
+@keyframes moveStars {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
+/* ============ الهيدر ============ */
+.header {
+  padding: 20px;
+  text-align: center;
+}
+.header a {
+  margin: 0 15px;
+  font-size: 20px;
+  color: #00eaff;
+  text-shadow: 0 0 8px #00eaff;
+  transition: 0.3s;
+}
+.header a:hover {
+  color: #fff;
+}
+
+/* زجاج */
+.glass {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ============ عنوان الموقع ============ */
+.neon {
+  color: #00eaff;
+  text-shadow: 0 0 15px #00eaff, 0 0 25px #00eaff;
+}
+
+/* ============ القصص ============ */
+.stories {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  padding: 40px;
+}
+
+.story-card {
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  cursor: pointer;
+  transition: 0.4s;
+}
+.story-card img {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.story-card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 30px #00eaff;
+}
+
+/* نيون قوي زي موقع الغاز */
+.neon-border {
+  border: 2px solid #00eaff;
+  box-shadow: 0 0 15px #00eaff, inset 0 0 10px #00eaff;
+}
+
+/* stories disabled */
+.story-card.disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* ============ صفحة القصة ============ */
+.story-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 40px;
+}
+
+.story-img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 0 20px #00eaff;
+}
+
+/* تأثير وميض */
+.flicker {
+  animation: flicker 3s infinite;
+}
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.story-text {
+  font-size: 22px;
+  line-height: 2;
+}
+
+/* زر الرجوع */
+.back-btn {
+  padding: 12px 20px;
+  display: inline-block;
+  background: #00eaff;
+  color: #000;
+  border-radius: 12px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.back-btn:hover {
+  background: #fff;
+}
+
+/* انيميشن دخول */
+.fade-in {
+  animation: fade 2s ease;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-up {
+  animation: up 1.5s ease;
+}
+@keyframes up {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.glow {
+  text-shadow: 0 0 12px #00eaff;
+}
+/* خلفية ناعمة */
+body {
+  background: radial-gradient(circle at top, #151515, #0a0a0a);
+  color: #fff;
+  font-family: "Cairo", sans-serif;
+  text-align: center;
+}
+
+/* الهيدر */
+.header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.header nav a {
+  margin: 0 10px;
+  color: #fff;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.header nav a:hover,
+.header nav .active {
+  color: #00ffe5;
+  text-shadow: 0 0 8px #00ffe5;
+}
+
+/* عناوين الصفحات */
+.page-title {
+  margin-top: 40px;
+  font-size: 34px;
+  color: #00eaff;
+  text-shadow: 0 0 10px #00eaff;
+}
+
+/* كروت */
+.about-card,
+.contact-form {
+  max-width: 700px;
+  margin: 25px auto;
+  background: rgba(255, 255, 255, 0.07);
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+/* فرم */
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 17px;
+}
+
+.contact-form button {
+  width: 100%;
+  padding: 14px;
+  background: #00ffe5;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  color: #000;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.contact-form button:hover {
+  background: #00b8a3;
+}
+
+/* أنيميشن */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.7s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
