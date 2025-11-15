@@ -1,131 +1,115 @@
-﻿<!DOCTYPE html>
-<html lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقع القصص</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-</head>
-<body>
-<script>
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> موقع القصص </title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-let mouse = { x: canvas.width/2, y: canvas.height/2, moved: false };
-
-// ---------- إعداد الخلفية: شرارات ----------
-class Particle {
-    constructor(x, y, color) {
-        this.x = x;
-        this.y = y;
-        this.vx = (Math.random() - 0.5) * 4;
-        this.vy = (Math.random() - 1.5) * 4;
-        this.alpha = 1;
-        this.size = Math.random() * 2 + 1;
-        this.color = color;
-    }
-    update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.alpha -= 0.02;
-        if(this.alpha < 0) this.alpha = 0;
-    }
-    draw() {
-        ctx.globalAlpha = this.alpha;
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
-        ctx.fill();
-        ctx.globalAlpha = 1;
-    }
-}
-
-let particles = [];
-
-// توليد شرارات عند مكان معين فقط
-function spawnFirework(x, y) {
-    const colors = ['#ff0055','#00ffff','#ffff00','#ff5500','#00ff88'];
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    for(let i=0; i<30; i++) {
-        particles.push(new Particle(x, y, color));
-    }
-}
-
-// ---------- تتبع الماوس ----------
-window.addEventListener('mousemove', e => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-    mouse.moved = true;
-});
-
-// ---------- الأنيميشن ----------
-function animate() {
-    // خلفية ثابتة بدون نقاط
-    ctx.fillStyle = '#111';
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-
-    // توليد صواريخ الخلفية بشكل متقطع
-    if(Math.random() < 0.01) {
-        spawnFirework(Math.random() * canvas.width, Math.random() * canvas.height);
-    }
-
-    // توليد صواريخ من الماوس إذا تحرك
-    if(mouse.moved) {
-        spawnFirework(mouse.x, mouse.y);
-        mouse.moved = false;
-    }
-
-    // تحديث ورسم كل الشرارات
-    for(let i = particles.length-1; i>=0; i--){
-        particles[i].update();
-        particles[i].draw();
-        if(particles[i].alpha <= 0) particles.splice(i,1);
-    }
-
-    requestAnimationFrame(animate);
-}
-
-animate();
-
-// إعادة ضبط الكانفاس عند تغيير حجم الشاشة
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
-
-</script>
-    <div class="stars"></div>
+  <body>
     <div class="stars2"></div>
     <div class="stars3"></div>
 
-    <header>
-        <h1 class="neon-text">موقع القصص</h1>
-        <nav>
-            <a href="index.html">الرئيسية</a>
-            <a href="about.html">حول</a>
-            <a href="contact.html">تواصل</a>
-        </nav>
+    <header class="header glass">
+      <nav>
+        <a style="color: rgb(0, 204, 255);" href="index.html">الرئيسية</a>
+        <a style="color: rgb(238, 255, 0);" href="about.html">حول الموقع</a>
+        <a style="color: rgb(238, 255, 0);" href="contact.html">تواصل معنا</a> 
+      </nav>
     </header>
 
-    <main>
-        <h2 class="neon-text">قصص النبي ﷺ</h2>
-        <div class="stories-container">
-            <div class="story-card neon-border glow" onclick="location.href='story1.html'">
-                <img src="OIP.jpg" alt="قصة الغزوة">
-                <h3>الغزوة بالتفصيل</h3>
-            </div>
-            <div class="story-card neon-border glow disabled">
-                <img src="OIP (1).jpg" alt="قريباً">
-                <h3>قريباً</h3>
-            </div>
-        </div>
-    </main>
+    <section class="hero fade-in">
+      <h1 style="color: brown;" class="neon">قصص ملهمة — تجربة قراءة خيالية</h1>
+      <h2 style="color: rgb(253, 228, 0);font-size: 20px;" class="neon">اختار قصة واستمتع بقراءة أفضل القصص بجميع انواعها</h2>
+    </section>
 
-    <footer>
-        <p>© موقع القصص — جميع الحقوق محفوظة <span id="year"></span></p>
+    <section style="color: black;" class="stories">
+      <div
+        class="story-card neon-border glow"
+        onclick="location.href='story1.html'"
+      >
+        <img src="maxresdefault.jpg" />
+        <h3>قصة سيدنا محمد ﷺ</h3>
+        <span></span>
+      </div>
+
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 2</h3>
+        <span>قريباً</span>
+      </div>
+
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 3</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 4</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 5</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 6</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 7</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 8</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 9</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 10</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 11</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 12</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 13</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 14</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 15</h3>
+        <span>قريباً</span>
+      </div>
+    </section>
+
+    <footer class="glass footer-fx">
+      <p>© موقع القصص — جميع الحقوق محفوظة</p>
     </footer>
-</body>
+    
+  </body>
 </html>

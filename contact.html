@@ -1,138 +1,49 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>تواصل معنا</title>
     <link rel="stylesheet" href="style.css" />
-    <style>
-/* الرسالة تظهر فوق كل شيء */
-.popup-message {
-  display: none; /* مخفية في البداية */
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.8);
-  color: #00fff0;
-  padding: 25px 40px;
-  border-radius: 20px;
-  text-align: center;
-  font-size: 22px;
-  box-shadow: 0 0 20px #00fff0;
-  z-index: 9999;
-  animation: fadeIn 0.5s;
-}
-
-.popup-message button {
-  margin-top: 15px;
-  padding: 8px 20px;
-  border: none;
-  border-radius: 12px;
-  background-color: #00fff0;
-  color: black;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.popup-message button:hover {
-  background-color: #00c4b0;
-}
-
-/* تأثير ظهور تدريجي */
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-</style>
-
   </head>
-
   <body>
+    <body>
     <div class="stars2"></div>
     <div class="stars3"></div>
-
     <!-- الهيدر -->
     <header class="header">
       <h1 class="logo">📚 موقع القصص</h1>
       <nav>
-        <a style="color: rgb(238, 255, 0);" href="categories.html">الرئيسية</a>
+        <a style="color: rgb(238, 255, 0);" href="index.html">الرئيسية</a>
         <a style="color: rgb(238, 255, 0);" href="about.html">حول</a>
         <a style="color: rgb(0, 204, 255);" class="active" href="contact.html">تواصل</a>
       </nav>
     </header>
 
-    <!-- محتوى الصفحة -->
     <section class="contact-container fade-up">
       <h2 class="page-title">تواصل معنا</h2>
 
-      <form id="contactForm" class="contact-form fade-up">
-        <input type="text" name="name" placeholder="الاسم كامل"title="ادخل اسمك" required />
-        <input 
-          type="email" 
-          name="email" 
-          placeholder="البريد الإلكتروني" 
+      <form
+        class="contact-form fade-up"
+        action="https://formspree.io/f/xkgkoykk"
+        method="POST"
+      >
+        <input type="text" name="name" placeholder="الاسم كامل" required />
+        <input
+          type="email"
+          name="email"
+          placeholder="البريد الإلكتروني"
           required
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-          title="يرجى إدخال بريد إلكتروني صالح"
         />
         <textarea
           name="message"
-          placeholder="اكتب رسالتك… , شاركنا رأيك لتساعدنا علي التطور"
+          placeholder="رسالتك…"
           rows="5"
           required
         ></textarea>
         <button type="submit">إرسال الرسالة 📩</button>
       </form>
-      <div id="formMessagePopup" class="popup-message">
-  <p id="popupText"></p>
-  <button id="popupBtn">حسنا</button>
-</div>
-
     </section>
     <footer class="footer">© موقع القصص — جميع الحقوق محفوظة</footer>
-    <!-- كود الإرسال بدون إعادة تحميل الصفحة -->
-    <script>
-const form = document.getElementById("contactForm");
-const popup = document.getElementById("formMessagePopup");
-const popupText = document.getElementById("popupText");
-const popupBtn = document.getElementById("popupBtn");
-
-form.addEventListener("submit", function(e){
-  e.preventDefault();
-
-  const formData = new FormData(form);
-
-  fetch("https://formspree.io/f/xkgkoykk", {
-    method: "POST",
-    body: formData,
-    headers: {
-      'Accept': 'application/json'
-    }
-  })
-  .then(response => {
-    if (response.ok) {
-      // عرض رسالة النجاح
-      popupText.innerText = "✅ تم إرسال رسالتك بنجاح.أشكرك على زيارة موقعي ، سوف يتم مناقشة رسالتك.";
-      popup.style.display = "block";
-      form.reset();
-    } else {
-      popupText.innerText = "❌ حدث خطأ، لم يتم إرسال رسالتك. حاول مرة أخرى.";
-      popup.style.display = "block";
-    }
-  })
-  .catch(error => {
-    popupText.innerText = "❌ حدث خطأ، لم يتم إرسال رسالتك. حاول مرة أخرى.";
-    popup.style.display = "block";
-    console.error(error);
-  });
-});
-
-// إغلاق الرسالة عند الضغط على زر "حسنا"
-popupBtn.addEventListener("click", function(){
-  popup.style.display = "none";
-});
-</script>
   </body>
 </html>
