@@ -87,9 +87,7 @@ body {
   background: rgba(255, 255, 255, 0.05);
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
   cursor: pointer;
-  transition: .4s;
-  margin: 10px auto;
-  box-sizing: border-box;
+  transition: 0.4s;
 }
 .story-card img {
   width: 100%;
@@ -240,6 +238,22 @@ body {
   box-shadow: 0 0 18px rgba(0, 255, 255, 0.2);
   backdrop-filter: blur(5px);
   animation: fadeUp 0.8s ease forwards;
+  color: #00eaff;
+  text-shadow: 0 0 10px #00eaff;
+}
+.about-card:hover{
+ transform: scale(1.08);
+ box-shadow: 10px 40px 50px #00eaff;
+ border: 2px solid #00eaff;
+ box-shadow: 0 0 15px #00eaff, inset 0 0 10px #00eaff;
+ animation: flicker 3s infinite;
+ padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  cursor: pointer;
+  transition: 0.4s;
 }
 
 /* فرم */
@@ -286,31 +300,6 @@ body {
     transform: translateY(0);
   }
 }
-/* كروت الأقسام */
-.categories {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-  padding: 40px;
-}
-
-.category-card {
-  padding: 30px 20px;
-  border-radius: 15px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-  cursor: pointer;
-  transition: 0.4s;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.category-card:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 30px #00eaff;
-}
-
 /* Disabled sections */
 .category-card.disabled {
   opacity: 0.3;
@@ -325,7 +314,9 @@ body {
   color: white;
   outline: none;
   margin-right: 20px;
-  width: 250px;
+  padding: 30px;
+  width: 200px;
+  row-gap: 5;
   transition: 0.3s;
 }
 
