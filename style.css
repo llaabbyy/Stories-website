@@ -1,4 +1,76 @@
 /* ============ خلفية النجوم المتحركة ============ */
+.container {
+  display: flex;
+  flex-wrap: wrap; /* يسمح للعناصر بالانتقال لسطر جديد */
+  gap: 10px;
+}
+.item {
+  flex: 1 1 200px; /* العنصر يحاول ياخد مساحة 200px ويكبر أو يصغر حسب الشاشة */
+}
+/* للتليفونات */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+  .container {
+    flex-direction: column; /* نخلي العناصر تتكدس عمودياً */
+  }
+}
+
+/* للتابلت */
+@media (min-width: 601px) and (max-width: 1024px) {
+  body {
+    font-size: 16px;
+  }
+  .container {
+    flex-direction: row;
+  }
+}
+/*---------------------------------*/
+/*  الكود الأساسي (كمبيوتر/لاب)    */
+/*---------------------------------*/
+body {
+  font-size: 16px; /* حجم الخط للكمبيوتر واللاب */
+  line-height: 1.5;
+  background: #fff;
+  color: #000;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;  /* يبقى في صفوف حسب العناصر */
+  gap: 10px;
+}
+
+.item {
+  width: 200px;     /* حجم ثابت للكمبيوتر واللاب */
+  padding: 20px;
+  background: #f0f0f0;
+  border-radius: 10px;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/*---------------------------------*/
+/*  تعديل للشاشات الصغيرة فقط       */
+/*---------------------------------*/
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;   /* أصغر شوية عشان الموبايل */
+  }
+  .container {
+    flex-direction: column; /* نخلي العناصر عمودية */
+    align-items: center;    /* توسيط العناصر */
+  }
+  .item {
+    width: 90%;  /* العنصر ياخد معظم عرض الموبايل */
+  }
+}
 
 body {
   margin: 0;
