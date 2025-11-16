@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>موقع القصص</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+  </head>
+
+  <body>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <header class="header glass">
+      <nav>
+        <a style="color: rgb(238, 255, 0)" href="index.html">الرئيسية</a>
+        <a style="color: rgb(238, 255, 0)" href="about.html">حول الموقع</a>
+        <a style="color: rgb(238, 255, 0)" href="contact.html">تواصل معنا</a>
+      </nav>
+    </header>
+    <br>
+<input type="text" id="searchInput" class="search-box" placeholder="ابحث عن قصة...">
+    <section class="hero fade-in">
+      <h1 style="color: brown" class="neon">قصص ملهمة — تجربة قراءة خيالية</h1>
+      <h2 style="color: rgb(253, 228, 0); font-size: 20px" class="neon">
+        اختار قصة واستمتع بقراءة أفضل القصص بجميع انواعها
+      </h2>
+    </section>
+
+    <section style="color: black" class="stories">
+      <div
+        class="story-card neon-border glow"
+        onclick="location.href='story1.html'"
+      >
+        <img src="maxresdefault.jpg" />
+        <h3>قصة سيدنا محمد ﷺ </h3>
+        <span></span>
+      </div>
+
+      <div
+        class="story-card neon-border glow"
+        onclick="location.href='story2.html'"
+      >
+        <img src="OIP (4).jpg" />
+        <h3>قصة سيدنا يوسف عليه السلام
+        </h3>
+        <span></span>
+      </div>
+
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 3</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 4</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 5</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 6</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 7</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 8</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 9</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 10</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 11</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 12</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 13</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 14</h3>
+        <span>قريباً</span>
+      </div>
+      <div class="story-card disabled">
+        <img src="OIP (1).jpg" />
+        <h3>قصة رقم 15</h3>
+        <span>قريباً</span>
+      </div>
+    </section>
+
+    <footer class="glass footer-fx">
+      <p>© موقع القصص — جميع الحقوق محفوظة</p>
+    </footer>
+  <script>
+  const searchInput = document.getElementById("searchInput");
+  const cards = Array.from(document.querySelectorAll(".story-card"));
+
+  const stories = cards.map(card => {
+    const title = card.querySelector("h3").innerText;
+    const content = card.querySelector("span") ? card.querySelector("span").innerText : "";
+
+    // الكلمات الدلالية فقط لإعطاء نتائج قريبة
+    let concepts = [];
+    if (title.includes("محمد")) concepts = ["النبي محمد", "رسول", "سيد الخلق"];
+    else if (title.includes("يوسف")) concepts = ["النبي يوسف", "حلم", "الصديق"];
+    else concepts = [];
+
+    return { title, element: card, content, concepts };
+  });
+
+  const noResultMessage = document.createElement("div");
+  noResultMessage.style.color = "yellow";
+  noResultMessage.style.fontSize = "15px";
+  noResultMessage.style.margin = "30px";
+  noResultMessage.style.display = "none";
+  noResultMessage.innerText = "⚠️ لا توجد نتائج مطابقة للبحث";
+  document.querySelector(".stories").prepend(noResultMessage);
+
+  function hybridSearch(query) {
+    query = query.trim().toLowerCase();
+    let resultsFound = false;
+
+    // خطوة 1: البحث عن التطابق التام في العنوان
+    let exactMatches = stories.filter(s => s.title.toLowerCase().includes(query));
+
+    // خطوة 2: البحث التقريبي/الدلالي
+    let fuzzyMatches = stories.filter(s => 
+      !exactMatches.includes(s) &&
+      s.concepts.some(c => c.toLowerCase().includes(query))
+    );
+
+    // إخفاء كل القصص
+    stories.forEach(s => s.element.style.display = "none");
+
+    // عرض التطابقات التامة أولًا
+    exactMatches.forEach(s => {
+      s.element.style.display = "";
+      let regex = new RegExp(`(${query})`, "gi");
+      s.element.querySelector("h3").innerHTML = s.title.replace(regex, `<span style="background: yellow; color: black;">$1</span>`);
+    });
+
+    // عرض النتائج التقريبية بعد التطابق التام
+    fuzzyMatches.forEach(s => {
+      s.element.style.display = "";
+      let regex = new RegExp(`(${query})`, "gi");
+      s.element.querySelector("h3").innerHTML = s.title.replace(regex, `<span style="background: orange; color: black;">$1</span>`);
+    });
+
+    if (exactMatches.length + fuzzyMatches.length === 0) {
+      noResultMessage.style.display = "block";
+    } else {
+      noResultMessage.style.display = "none";
+    }
+  }
+
+  searchInput.addEventListener("input", () => hybridSearch(searchInput.value));
+  searchInput.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+      searchInput.value = "";
+      hybridSearch("");
+    }
+  });
+</script>
+
+  </body>
+</html>

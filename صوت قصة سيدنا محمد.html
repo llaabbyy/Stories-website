@@ -1,34 +1,122 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>قصة سيدنا محمد ﷺ</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    .read-btn {
-      padding: 10px 15px;
-      margin: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-  </style>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>قصة سيدنا محمد ﷺ</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .read-btn {
+        padding: 10px 15px;
+        margin: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
 
-<body class="story-bg">
-  <div class="stars3"></div>
+  <body class="story-bg">
+    <div class="stars3"></div>
 
-  <header class="header glass">
-    <nav>
-      <a style="color: rgb(238, 255, 0);" href="index.html">⬅ الرجوع للرئيسية</a>
-    </nav>
-  </header>
-    <section style="color: white;" class="story-container slide-up">
-      <h1 style="color: brown;" class="neon">قصة سيدنا محمد ﷺ</h1>
+    <header class="header glass">
+      <nav>
+        <a style="color: rgb(238, 255, 0)" href="index.html"
+          >⬅ الرجوع للرئيسية</a
+        >
+      </nav>
+    </header>
+    <section style="color: white" class="story-container slide-up">
+      <h1 style="color: brown" class="neon">قصة سيدنا محمد ﷺ</h1>
 
       <img src="OIP.jpg" class="story-img flicker" />
       <div class="story-text glow">
+       <section style="border: inset; background-color: rgb(117,99,134); border-radius: 30px;">
+  <audio id="audio1">
+    <source src="f1.mp3" type="audio/mpeg" />
+  </audio>
+
+  <input type="range" id="progress1" value="0" min="0" step="1" style="width:90%; margin-top:10px;" />
+  <div style="color:white; margin-top:6px;">
+    <span id="current1">0:00</span> / <span id="duration1">0:00</span>
+  </div>
+
+  <label style="color:white; display:block; margin-top:8px;">
+    مستوى الصوت
+    <input type="range" id="volume1" min="0" max="1" step="0.01" value="1" style="width:90%; margin-top:6px;" />
+  </label>
+
+  <button  class="read-btn"onclick="playAudio('audio1')">تشغيل 🎧</button>
+  <button  class="read-btn"onclick="pauseAudio('audio1')">إيقاف ⛔</button>
+  <button  class="read-btn"onclick="restartAudio('audio1')">إعادة تشغيل 🔁</button>
+</section>
+
+<script>
+function playAudio(id) {
+  const audio = document.getElementById(id);
+  audio.play();
+}
+
+function pauseAudio(id) {
+  const audio = document.getElementById(id);
+  audio.pause();
+}
+
+function restartAudio(id) {
+  const audio = document.getElementById(id);
+  audio.currentTime = 0;
+  audio.play();
+}
+
+// تحديث التقدم والوقت لكل فصل
+function setupProgress(audioId, progressId, currentId, durationId, volumeId) {
+  const audio = document.getElementById(audioId);
+  const progress = document.getElementById(progressId);
+  const current = document.getElementById(currentId);
+  const duration = document.getElementById(durationId);
+  const volume = document.getElementById(volumeId);
+
+  if (!audio) return;
+
+  audio.volume = volume ? parseFloat(volume.value) : 1;
+
+  audio.addEventListener("loadedmetadata", () => {
+    if (progress) progress.max = Math.floor(audio.duration);
+    if (duration) duration.textContent = formatTime(audio.duration);
+  });
+
+  audio.addEventListener("timeupdate", () => {
+    if (progress) progress.value = Math.floor(audio.currentTime);
+    if (current) current.textContent = formatTime(audio.currentTime);
+  });
+
+  if (progress) {
+    progress.addEventListener("input", () => {
+      audio.currentTime = parseFloat(progress.value);
+    });
+  }
+
+  if (volume) {
+    volume.addEventListener("input", () => {
+      audio.volume = parseFloat(volume.value);
+    });
+  }
+}
+
+function formatTime(sec){
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m}:${s<10?'0'+s:s}`;
+}
+
+// ضبط كل الفصول عند التحميل
+document.addEventListener("DOMContentLoaded", () => {
+  setupProgress('audio1','progress1','current1','duration1','volume1');
+  setupProgress('audio2','progress2','current2','duration2','volume2');
+  // ضيف باقي الفصول بنفس الطريقة
+});
+</script>
+
         <h1>الفصل الأول: نور مكة ويُتم الطفولة</h1>
         <p style="text-align: right">
           في مكة القديمة، حيث الأسواق تعج بالبضائع، وروائح البخور تملأ الهواء،
@@ -49,6 +137,88 @@
           تعلم الصبر، وتعلم كيف تكون الحياة مليئة بالمفاجآت، وتعلم قوة التحمل
           رغم الصعاب.
         </p>
+         <section style="border: inset; background-color: rgb(117,99,134); border-radius: 30px;">
+  <audio id="audio2">
+    <source src="f2.mp3" type="audio/mpeg" />
+  </audio>
+
+  <input type="range" id="progress2" value="0" min="0" step="1" style="width:90%; margin-top:10px;" />
+  <div style="color:white; margin-top:6px;">
+    <span id="current2">0:00</span> / <span id="duration2">0:00</span>
+  </div>
+
+  <label style="color:white; display:block; margin-top:8px;">
+    مستوى الصوت
+    <input type="range" id="volume2" min="0" max="1" step="0.01" value="1" style="width:90%; margin-top:6px;" />
+  </label>
+
+  <button class="read-btn" onclick="playAudio('audio2')">تشغيل 🎧</button>
+  <button  class="read-btn"onclick="pauseAudio('audio2')">إيقاف ⛔</button>
+  <button  class="read-btn"onclick="restartAudio('audio2')">إعادة تشغيل 🔁</button>
+</section>
+
+<script>
+function playAudio(id) {
+  const audio = document.getElementById(id);
+  audio.play();
+}
+
+function pauseAudio(id) {
+  const audio = document.getElementById(id);
+  audio.pause();
+}
+
+function restartAudio(id) {
+  const audio = document.getElementById(id);
+  audio.currentTime = 0;
+  audio.play();
+}
+
+function setupProgress(audioId, progressId, currentId, durationId, volumeId) {
+  const audio = document.getElementById(audioId);
+  const progress = document.getElementById(progressId);
+  const current = document.getElementById(currentId);
+  const duration = document.getElementById(durationId);
+  const volume = document.getElementById(volumeId);
+
+  if (!audio) return;
+
+  audio.volume = volume ? parseFloat(volume.value) : 1;
+
+  audio.addEventListener("loadedmetadata", () => {
+    if (progress) progress.max = Math.floor(audio.duration);
+    if (duration) duration.textContent = formatTime(audio.duration);
+  });
+
+  audio.addEventListener("timeupdate", () => {
+    if (progress) progress.value = Math.floor(audio.currentTime);
+    if (current) current.textContent = formatTime(audio.currentTime);
+  });
+
+  if (progress) {
+    progress.addEventListener("input", () => {
+      audio.currentTime = parseFloat(progress.value);
+    });
+  }
+
+  if (volume) {
+    volume.addEventListener("input", () => {
+      audio.volume = parseFloat(volume.value);
+    });
+  }
+}
+
+function formatTime(sec){
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m}:${s<10?'0'+s:s}`;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  setupProgress('audio2','progress2','current2','duration2','volume2');
+});
+</script>
+
         <h1>الفصل الثاني: شاب في مكة والتجارة مع خديجة</h1>
         <p style="text-align: right">
           كبر محمد ﷺ وأصبح شابًا قويًا وذكيًا، يحمل قلبًا طيبًا وعقلًا حكيمًا.
@@ -433,38 +603,41 @@
       </div>
       <a href="index.html" class="back-btn">⬅ العودة للقائمة</a>
     </section>
-  <script>
-    const storyText = document.querySelector(".story-container").innerText;
-    const readBtn = document.getElementById("readBtn");
-    const stopBtn = document.getElementById("stopBtn");
+    <script>
+      const storyText = document.querySelector(".story-container").innerText;
+      const readBtn = document.getElementById("readBtn");
+      const stopBtn = document.getElementById("stopBtn");
 
-    let utterance;
-    let arabicVoice = null;
+      let utterance;
+      let arabicVoice = null;
 
-    function loadVoices() {
-      const voices = window.speechSynthesis.getVoices();
-      arabicVoice = voices.find(
-        v => v.lang.startsWith("ar") || v.name.includes("Arabic") || v.name.includes("ar")
-      );
-      console.log("Arabic voice found:", arabicVoice);
-    }
+      function loadVoices() {
+        const voices = window.speechSynthesis.getVoices();
+        arabicVoice = voices.find(
+          (v) =>
+            v.lang.startsWith("ar") ||
+            v.name.includes("Arabic") ||
+            v.name.includes("ar")
+        );
+        console.log("Arabic voice found:", arabicVoice);
+      }
 
-    window.speechSynthesis.onvoiceschanged = loadVoices;
-    loadVoices();
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+      loadVoices();
 
-    readBtn.addEventListener("click", () => {
-      window.speechSynthesis.cancel();
-      utterance = new SpeechSynthesisUtterance(storyText);
-      utterance.lang = "ar-SA"; 
-      utterance.rate = 1;
-      utterance.pitch = 1;
-      if (arabicVoice) utterance.voice = arabicVoice;
-      window.speechSynthesis.speak(utterance);
-    });
+      readBtn.addEventListener("click", () => {
+        window.speechSynthesis.cancel();
+        utterance = new SpeechSynthesisUtterance(storyText);
+        utterance.lang = "ar-SA";
+        utterance.rate = 1;
+        utterance.pitch = 1;
+        if (arabicVoice) utterance.voice = arabicVoice;
+        window.speechSynthesis.speak(utterance);
+      });
 
-    stopBtn.addEventListener("click", () => {
-      window.speechSynthesis.cancel();
-    });
-  </script>
-</body>
+      stopBtn.addEventListener("click", () => {
+        window.speechSynthesis.cancel();
+      });
+    </script>
+  </body>
 </html>
