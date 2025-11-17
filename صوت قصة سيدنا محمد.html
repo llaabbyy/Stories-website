@@ -232,6 +232,93 @@ document.addEventListener("DOMContentLoaded", () => {
           السماء، يفكر في معنى الحياة، ويسأل نفسه: "هل لا يوجد طريق للحق؟ هل لا
           يوجد من ينقذ الناس من الظلم؟"
         </p>
+        <section style="border: inset; background-color: rgb(117,99,134); border-radius: 30px;">
+  <audio id="audio3">
+    <source src="f3.mp3" type="audio/mpeg" />
+  </audio>
+
+  <input type="range" id="progress3" value="0" min="0" step="1" style="width:90%; margin-top:10px;" />
+  <div style="color:white; margin-top:6px;">
+    <span id="current3">0:00</span> / <span id="duration3">0:00</span>
+  </div>
+
+  <label style="color:white; display:block; margin-top:8px;">
+    مستوى الصوت
+    <input type="range" id="volume3" min="0" max="1" step="0.01" value="1" style="width:90%; margin-top:6px;" />
+  </label>
+
+  <button  class="read-btn"onclick="playAudio('audio3')">تشغيل 🎧</button>
+  <button  class="read-btn"onclick="pauseAudio('audio3')">إيقاف ⛔</button>
+  <button  class="read-btn"onclick="restartAudio('audio3')">إعادة تشغيل 🔁</button>
+</section>
+
+<script>
+function playAudio(id) {
+  const audio = document.getElementById(id);
+  audio.play();
+}
+
+function pauseAudio(id) {
+  const audio = document.getElementById(id);
+  audio.pause();
+}
+
+function restartAudio(id) {
+  const audio = document.getElementById(id);
+  audio.currentTime = 0;
+  audio.play();
+}
+
+// تحديث التقدم والوقت لكل فصل
+function setupProgress(audioId, progressId, currentId, durationId, volumeId) {
+  const audio = document.getElementById(audioId);
+  const progress = document.getElementById(progressId);
+  const current = document.getElementById(currentId);
+  const duration = document.getElementById(durationId);
+  const volume = document.getElementById(volumeId);
+
+  if (!audio) return;
+
+  audio.volume = volume ? parseFloat(volume.value) : 1;
+
+  audio.addEventListener("loadedmetadata", () => {
+    if (progress) progress.max = Math.floor(audio.duration);
+    if (duration) duration.textContent = formatTime(audio.duration);
+  });
+
+  audio.addEventListener("timeupdate", () => {
+    if (progress) progress.value = Math.floor(audio.currentTime);
+    if (current) current.textContent = formatTime(audio.currentTime);
+  });
+
+  if (progress) {
+    progress.addEventListener("input", () => {
+      audio.currentTime = parseFloat(progress.value);
+    });
+  }
+
+  if (volume) {
+    volume.addEventListener("input", () => {
+      audio.volume = parseFloat(volume.value);
+    });
+  }
+}
+
+function formatTime(sec){
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m}:${s<10?'0'+s:s}`;
+}
+
+// ضبط كل الفصول عند التحميل
+document.addEventListener("DOMContentLoaded", () => {
+  setupProgress('audio1','progress1','current1','duration1','volume1');
+  setupProgress('audio2','progress2','current2','duration2','volume2');
+  setupProgress('audio3','progress3','current3','duration3','volume3');
+  // ضيف باقي الفصول بنفس الطريقة
+});
+</script>
+
         <h1>الفصل الثالث: الغار والوحي الأول</h1>
         <p style="text-align: right">
           ذات ليلة مظلمة، بينما كان محمد ﷺ يتعبد في غار حراء، فوق جبل يطل على
@@ -245,6 +332,94 @@ document.addEventListener("DOMContentLoaded", () => {
           النبي ﷺ كان دائمًا صبورًا وحكيمًا، يتعامل مع أعدائه بلطف إذا أمكن،
           ويعطي درسًا في الرحمة حتى لمن يظلمونه.
         </p>
+        <section style="border: inset; background-color: rgb(117,99,134); border-radius: 30px;">
+  <audio id="audio4">
+    <source src="f4.mp3" type="audio/mpeg" />
+  </audio>
+
+  <input type="range" id="progress4" value="0" min="0" step="1" style="width:90%; margin-top:10px;" />
+  <div style="color:white; margin-top:6px;">
+    <span id="current4">0:00</span> / <span id="duration3">0:00</span>
+  </div>
+
+  <label style="color:white; display:block; margin-top:8px;">
+    مستوى الصوت
+    <input type="range" id="volume4" min="0" max="1" step="0.01" value="1" style="width:90%; margin-top:6px;" />
+  </label>
+
+  <button  class="read-btn"onclick="playAudio('audio4')">تشغيل 🎧</button>
+  <button  class="read-btn"onclick="pauseAudio('audio4')">إيقاف ⛔</button>
+  <button  class="read-btn"onclick="restartAudio('audio4')">إعادة تشغيل 🔁</button>
+</section>
+
+<script>
+function playAudio(id) {
+  const audio = document.getElementById(id);
+  audio.play();
+}
+
+function pauseAudio(id) {
+  const audio = document.getElementById(id);
+  audio.pause();
+}
+
+function restartAudio(id) {
+  const audio = document.getElementById(id);
+  audio.currentTime = 0;
+  audio.play();
+}
+
+// تحديث التقدم والوقت لكل فصل
+function setupProgress(audioId, progressId, currentId, durationId, volumeId) {
+  const audio = document.getElementById(audioId);
+  const progress = document.getElementById(progressId);
+  const current = document.getElementById(currentId);
+  const duration = document.getElementById(durationId);
+  const volume = document.getElementById(volumeId);
+
+  if (!audio) return;
+
+  audio.volume = volume ? parseFloat(volume.value) : 1;
+
+  audio.addEventListener("loadedmetadata", () => {
+    if (progress) progress.max = Math.floor(audio.duration);
+    if (duration) duration.textContent = formatTime(audio.duration);
+  });
+
+  audio.addEventListener("timeupdate", () => {
+    if (progress) progress.value = Math.floor(audio.currentTime);
+    if (current) current.textContent = formatTime(audio.currentTime);
+  });
+
+  if (progress) {
+    progress.addEventListener("input", () => {
+      audio.currentTime = parseFloat(progress.value);
+    });
+  }
+
+  if (volume) {
+    volume.addEventListener("input", () => {
+      audio.volume = parseFloat(volume.value);
+    });
+  }
+}
+
+function formatTime(sec){
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m}:${s<10?'0'+s:s}`;
+}
+
+// ضبط كل الفصول عند التحميل
+document.addEventListener("DOMContentLoaded", () => {
+  setupProgress('audio1','progress1','current1','duration1','volume1');
+  setupProgress('audio2','progress2','current2','duration2','volume2');
+  setupProgress('audio3','progress3','current3','duration3','volume3');
+  setupProgress('audio4','progress4','current4','duration4','volume4');
+  // ضيف باقي الفصول بنفس الطريقة
+});
+</script>
+
         <h1>الفصل الرابع: التحديات في مكة</h1>
         <p style="text-align: right">
           مع مرور الوقت، أصبح النبي ﷺ يدعو جهرًا، وأصبح المسلمون هدفًا لغضب
@@ -254,6 +429,95 @@ document.addEventListener("DOMContentLoaded", () => {
           ويواجه الظلم بالحكمة والشجاعة. أصبح نموذجًا للأخلاق، حتى أولئك الذين
           لم يؤمنوا به، كانوا يحترمونه.
         </p>
+        <section style="border: inset; background-color: rgb(117,99,134); border-radius: 30px;">
+  <audio id="audio5">
+    <source src="f5.mp3" type="audio/mpeg" />
+  </audio>
+
+  <input type="range" id="progress5" value="0" min="0" step="1" style="width:90%; margin-top:10px;" />
+  <div style="color:white; margin-top:6px;">
+    <span id="current5">0:00</span> / <span id="duration3">0:00</span>
+  </div>
+
+  <label style="color:white; display:block; margin-top:8px;">
+    مستوى الصوت
+    <input type="range" id="volume5" min="0" max="1" step="0.01" value="1" style="width:90%; margin-top:6px;" />
+  </label>
+
+  <button  class="read-btn"onclick="playAudio('audio5')">تشغيل 🎧</button>
+  <button  class="read-btn"onclick="pauseAudio('audio5')">إيقاف ⛔</button>
+  <button  class="read-btn"onclick="restartAudio('audio5')">إعادة تشغيل 🔁</button>
+</section>
+
+<script>
+function playAudio(id) {
+  const audio = document.getElementById(id);
+  audio.play();
+}
+
+function pauseAudio(id) {
+  const audio = document.getElementById(id);
+  audio.pause();
+}
+
+function restartAudio(id) {
+  const audio = document.getElementById(id);
+  audio.currentTime = 0;
+  audio.play();
+}
+
+// تحديث التقدم والوقت لكل فصل
+function setupProgress(audioId, progressId, currentId, durationId, volumeId) {
+  const audio = document.getElementById(audioId);
+  const progress = document.getElementById(progressId);
+  const current = document.getElementById(currentId);
+  const duration = document.getElementById(durationId);
+  const volume = document.getElementById(volumeId);
+
+  if (!audio) return;
+
+  audio.volume = volume ? parseFloat(volume.value) : 1;
+
+  audio.addEventListener("loadedmetadata", () => {
+    if (progress) progress.max = Math.floor(audio.duration);
+    if (duration) duration.textContent = formatTime(audio.duration);
+  });
+
+  audio.addEventListener("timeupdate", () => {
+    if (progress) progress.value = Math.floor(audio.currentTime);
+    if (current) current.textContent = formatTime(audio.currentTime);
+  });
+
+  if (progress) {
+    progress.addEventListener("input", () => {
+      audio.currentTime = parseFloat(progress.value);
+    });
+  }
+
+  if (volume) {
+    volume.addEventListener("input", () => {
+      audio.volume = parseFloat(volume.value);
+    });
+  }
+}
+
+function formatTime(sec){
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m}:${s<10?'0'+s:s}`;
+}
+
+// ضبط كل الفصول عند التحميل
+document.addEventListener("DOMContentLoaded", () => {
+  setupProgress('audio1','progress1','current1','duration1','volume1');
+  setupProgress('audio2','progress2','current2','duration2','volume2');
+  setupProgress('audio3','progress3','current3','duration3','volume3');
+  setupProgress('audio4','progress4','current4','duration4','volume4');
+  setupProgress('audio5','progress5','current5','duration5','volume5');
+  // ضيف باقي الفصول بنفس الطريقة
+});
+</script>
+
         <h1>الفصل الخامس: الهجرة إلى المدينة – الرحلة المليئة بالمخاطر</h1>
         <p style="text-align: right">
           كان الظلام يكسو مكة، والنجوم تتلألأ في السماء، لكن قلب النبي ﷺ كان
